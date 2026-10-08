@@ -1,0 +1,4390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+      maximum-scale=1.0,user-scalable=no">
+
+<title>Negocios</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f4f4;
+    color:#222;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.top{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#6b3f25;
+    color:white;
+    padding:12px;
+}
+
+.top-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:12px;
+}
+
+nav{
+    position:sticky;
+    top:52px;
+    z-index:90;
+    background:white;
+    border-bottom:1px solid #ddd;
+    display:flex;
+    overflow-x:auto;
+}
+
+nav button{
+    flex:none;
+    border:0;
+    background:white;
+    padding:13px 14px;
+    color:#555;
+}
+
+nav button.active{
+    color:#6b3f25;
+    font-weight:bold;
+    border-bottom:3px solid #6b3f25;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:17px;
+    margin:12px 0;
+    box-shadow:0 2px 10px rgba(0,0,0,.06);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.stat{
+    background:white;
+    border-radius:13px;
+    padding:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.stat-title{
+    color:#777;
+    font-size:14px;
+}
+
+.stat-number{
+    color:#6b3f25;
+    font-size:27px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    border:1px solid #d8d8d8;
+    border-radius:9px;
+    padding:12px;
+    margin:5px 0 12px;
+    background:white;
+    outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#6b3f25;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:7px;
+}
+
+.btn{
+    border:0;
+    border-radius:9px;
+    padding:11px 15px;
+    background:#6b3f25;
+    color:white;
+    margin:3px;
+}
+
+.btn.secondary{
+    background:white;
+    color:#6b3f25;
+    border:1px solid #6b3f25;
+}
+
+.btn.green{
+    background:#237a3b;
+}
+
+.btn.red{
+    background:#b32626;
+}
+
+.btn.gray{
+    background:#666;
+}
+
+.auth-screen{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:18px;
+    background:#6b3f25;
+}
+
+.auth-card{
+    background:white;
+    width:min(430px,100%);
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 30px rgba(0,0,0,.2);
+}
+
+.auth-title{
+    text-align:center;
+    margin-top:0;
+    color:#6b3f25;
+}
+
+.auth-subtitle{
+    text-align:center;
+    color:#777;
+}
+
+.message{
+    margin-top:10px;
+    padding:10px;
+    border-radius:9px;
+    white-space:pre-wrap;
+}
+
+.message.error{
+    background:#ffe6e6;
+    color:#8b0000;
+}
+
+.message.success{
+    background:#e8f7ec;
+    color:#17652b;
+}
+
+.item{
+    border:1px solid #e2e2e2;
+    border-radius:12px;
+    padding:13px;
+    margin:10px 0;
+}
+
+.item-actions{
+    margin-top:10px;
+}
+
+.muted{
+    color:#777;
+}
+
+.small{
+    font-size:12px;
+}
+
+.pill{
+    display:inline-block;
+    padding:5px 9px;
+    background:#eee;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.media{
+    width:100%;
+    max-height:500px;
+    object-fit:contain;
+    border-radius:12px;
+    margin-top:10px;
+    background:#eee;
+}
+
+.profile-photo{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#ddd;
+    display:block;
+    margin-bottom:12px;
+}
+
+.map-link{
+    display:inline-block;
+    margin-top:8px;
+    color:#6b3f25;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    padding:20px;
+}
+
+.loading{
+    text-align:center;
+    padding:20px;
+    color:#777;
+}
+
+@media(max-width:700px){
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .top-inner{
+        flex-wrap:wrap;
+    }
+
+}
+
+@media(max-width:420px){
+
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .user-area{
+        font-size:12px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     LOGIN / REGISTRO
+===================================================== -->
+
+<div id="authScreen" class="auth-screen">
+
+    <div class="auth-card">
+
+        <h1 class="auth-title">Negocios</h1>
+
+        <p class="auth-subtitle">
+            Administra y encuentra negocios desde tu teléfono.
+        </p>
+
+        <label>Correo electrónico</label>
+        <input
+            id="authEmail"
+            type="email"
+            autocomplete="email"
+            placeholder="correo@ejemplo.com"
+        >
+
+        <label>Contraseña</label>
+        <input
+            id="authPassword"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Mínimo 6 caracteres"
+        >
+
+        <button
+            id="loginButton"
+            class="btn"
+            style="width:100%"
+        >
+            Iniciar sesión
+        </button>
+
+        <button
+            id="registerButton"
+            class="btn secondary"
+            style="width:100%;margin-top:8px"
+        >
+            Crear cuenta
+        </button>
+
+        <div id="authMessage"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APLICACIÓN
+===================================================== -->
+
+<div id="application" class="hidden">
+
+<header class="top">
+
+    <div class="top-inner">
+
+        <div class="logo">
+            Negocios
+        </div>
+
+        <div class="user-area">
+
+            <span id="userNameLabel">
+                Usuario
+            </span>
+
+            <button
+                id="logoutButton"
+                class="btn secondary"
+            >
+                Salir
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<nav id="navigation">
+
+    <button
+        class="active"
+        data-page="homePage"
+    >
+        Inicio
+    </button>
+
+    <button data-page="businessPage">
+        Mi negocio
+    </button>
+
+    <button data-page="clientsPage">
+        Clientes
+    </button>
+
+    <button data-page="servicesPage">
+        Servicios
+    </button>
+
+    <button data-page="salesPage">
+        Ventas
+    </button>
+
+    <button data-page="agendaPage">
+        Agenda
+    </button>
+
+    <button data-page="attendancePage">
+        Asistencia
+    </button>
+
+    <button data-page="publishPage">
+        Publicar
+    </button>
+
+    <button data-page="discoverPage">
+        Descubrir
+    </button>
+
+    <button data-page="profilePage">
+        Perfil
+    </button>
+
+</nav>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     INICIO
+===================================================== -->
+
+<section id="homePage" class="page active">
+
+    <div class="card">
+
+        <h2>Panel principal</h2>
+
+        <p>
+            Bienvenido,
+            <strong id="welcomeName"></strong>
+        </p>
+
+        <div id="accountStatus"></div>
+
+        <div id="globalMessage"></div>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Clientes
+            </div>
+
+            <div
+                id="statClients"
+                class="stat-number"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Servicios
+            </div>
+
+            <div
+                id="statServices"
+                class="stat-number"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Ventas
+            </div>
+
+            <div
+                id="statSales"
+                class="stat-number"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Ingresos
+            </div>
+
+            <div
+                id="statIncome"
+                class="stat-number"
+            >
+                $0.00
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Tu negocio</h2>
+
+        <div id="homeBusiness">
+            <div class="loading">
+                Cargando...
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NEGOCIO
+===================================================== -->
+
+<section id="businessPage" class="page">
+
+    <div class="card">
+
+        <h2>Mi negocio</h2>
+
+        <label>
+            Nombre del negocio
+        </label>
+
+        <input
+            id="businessName"
+            placeholder="Ej.: Barbería G3"
+        >
+
+
+        <label>
+            Tipo
+        </label>
+
+        <select id="businessType">
+
+            <option value="Negocio">
+                Negocio
+            </option>
+
+            <option value="Barbería">
+                Barbería
+            </option>
+
+            <option value="Hamburguesería">
+                Hamburguesería
+            </option>
+
+            <option value="Gimnasio">
+                Gimnasio
+            </option>
+
+            <option value="Restaurante">
+                Restaurante
+            </option>
+
+            <option value="Tienda">
+                Tienda
+            </option>
+
+            <option value="Otro">
+                Otro
+            </option>
+
+        </select>
+
+
+        <label>
+            Descripción
+        </label>
+
+        <textarea
+            id="businessDescription"
+            placeholder="Describe tu negocio..."
+        ></textarea>
+
+
+        <label>
+            Dirección
+        </label>
+
+        <input
+            id="businessAddress"
+            placeholder="Dirección del negocio"
+        >
+
+
+        <button
+            id="getLocationButton"
+            class="btn secondary"
+        >
+            📍 Usar ubicación actual
+        </button>
+
+
+        <div
+            id="businessCoordinates"
+            class="small muted"
+        >
+        </div>
+
+
+        <br>
+
+
+        <button
+            id="saveBusinessButton"
+            class="btn"
+        >
+            Guardar negocio
+        </button>
+
+
+        <div id="businessMessage"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CLIENTES
+===================================================== -->
+
+<section id="clientsPage" class="page">
+
+    <div class="card">
+
+        <h2>Clientes</h2>
+
+        <input
+            id="clientName"
+            placeholder="Nombre"
+        >
+
+        <input
+            id="clientPhone"
+            placeholder="Teléfono"
+        >
+
+        <input
+            id="clientEmail"
+            type="email"
+            placeholder="Correo"
+        >
+
+        <button
+            id="addClientButton"
+            class="btn"
+        >
+            Agregar cliente
+        </button>
+
+    </div>
+
+
+    <div
+        id="clientsList"
+    ></div>
+
+</section>
+
+
+<!-- =====================================================
+     SERVICIOS
+===================================================== -->
+
+<section id="servicesPage" class="page">
+
+    <div class="card">
+
+        <h2>
+            Servicios y productos
+        </h2>
+
+        <input
+            id="serviceName"
+            placeholder="Nombre"
+        >
+
+        <input
+            id="servicePrice"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Precio"
+        >
+
+        <select id="serviceType">
+
+            <option value="Servicio">
+                Servicio
+            </option>
+
+            <option value="Producto">
+                Producto
+            </option>
+
+        </select>
+
+        <button
+            id="addServiceButton"
+            class="btn"
+        >
+            Agregar
+        </button>
+
+    </div>
+
+
+    <div id="servicesList"></div>
+
+</section>
+
+
+<!-- =====================================================
+     VENTAS
+===================================================== -->
+
+<section id="salesPage" class="page">
+
+    <div class="card">
+
+        <h2>
+            Registrar venta
+        </h2>
+
+        <label>
+            Servicio/producto
+        </label>
+
+        <select id="saleService"></select>
+
+        <label>
+            Monto
+        </label>
+
+        <input
+            id="saleAmount"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Monto"
+        >
+
+        <label>
+            Método de pago
+        </label>
+
+        <select id="salePayment">
+
+            <option>
+                Efectivo
+            </option>
+
+            <option>
+                Transferencia
+            </option>
+
+            <option>
+                Tarjeta
+            </option>
+
+            <option>
+                PayPal
+            </option>
+
+        </select>
+
+        <button
+            id="addSaleButton"
+            class="btn green"
+        >
+            Registrar venta
+        </button>
+
+    </div>
+
+
+    <div id="salesList"></div>
+
+</section>
+
+
+<!-- =====================================================
+     AGENDA
+===================================================== -->
+
+<section id="agendaPage" class="page">
+
+    <div class="card">
+
+        <h2>
+            Agenda
+        </h2>
+
+        <label>
+            Cliente
+        </label>
+
+        <select id="appointmentClient"></select>
+
+        <label>
+            Fecha y hora
+        </label>
+
+        <input
+            id="appointmentDate"
+            type="datetime-local"
+        >
+
+        <label>
+            Servicio
+        </label>
+
+        <input
+            id="appointmentService"
+            placeholder="Servicio"
+        >
+
+        <button
+            id="addAppointmentButton"
+            class="btn"
+        >
+            Crear cita
+        </button>
+
+    </div>
+
+
+    <div id="appointmentsList"></div>
+
+</section>
+
+
+<!-- =====================================================
+     ASISTENCIA
+===================================================== -->
+
+<section id="attendancePage" class="page">
+
+    <div class="card">
+
+        <h2>
+            Asistencia
+        </h2>
+
+        <select id="attendanceClient"></select>
+
+        <button
+            id="addAttendanceButton"
+            class="btn green"
+        >
+            Registrar asistencia
+        </button>
+
+    </div>
+
+
+    <div id="attendanceList"></div>
+
+</section>
+
+
+<!-- =====================================================
+     PUBLICACIONES
+===================================================== -->
+
+<section id="publishPage" class="page">
+
+    <div class="card">
+
+        <h2>
+            Publicar
+        </h2>
+
+        <select id="publicationType">
+
+            <option value="Negocio">
+                Negocio
+            </option>
+
+            <option value="Producto">
+                Producto
+            </option>
+
+            <option value="Evento">
+                Evento
+            </option>
+
+            <option value="Publicidad">
+                Publicidad
+            </option>
+
+        </select>
+
+
+        <textarea
+            id="publicationText"
+            placeholder="Escribe una publicación..."
+        ></textarea>
+
+
+        <label>
+            Foto o video
+        </label>
+
+        <input
+            id="publicationFile"
+            type="file"
+            accept="image/*,video/*"
+        >
+
+
+        <button
+            id="publishButton"
+            class="btn"
+        >
+            Publicar
+        </button>
+
+
+        <div id="publicationMessage"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DESCUBRIR
+===================================================== -->
+
+<section id="discoverPage" class="page">
+
+    <div class="card">
+
+        <h2>
+            Descubrir negocios
+        </h2>
+
+        <input
+            id="discoverSearch"
+            placeholder="Buscar negocio, producto o servicio..."
+        >
+
+        <button
+            id="refreshDiscoverButton"
+            class="btn secondary"
+        >
+            Actualizar
+        </button>
+
+    </div>
+
+
+    <div id="discoverList"></div>
+
+</section>
+
+
+<!-- =====================================================
+     PERFIL
+===================================================== -->
+
+<section id="profilePage" class="page">
+
+    <div class="card">
+
+        <h2>
+            Perfil
+        </h2>
+
+        <img
+            id="profilePhoto"
+            class="profile-photo"
+            alt="Foto de perfil"
+        >
+
+
+        <input
+            id="profilePhotoFile"
+            type="file"
+            accept="image/*"
+        >
+
+
+        <button
+            id="changePhotoButton"
+            class="btn secondary"
+        >
+            Cambiar foto
+        </button>
+
+
+        <label>
+            Nombre
+        </label>
+
+        <input
+            id="profileName"
+            placeholder="Nombre"
+        >
+
+
+        <button
+            id="saveProfileButton"
+            class="btn"
+        >
+            Guardar perfil
+        </button>
+
+
+        <div id="profileMessage"></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Premium
+        </h2>
+
+        <p>
+            Acceso Premium:
+            <strong>US$5/mes</strong>
+        </p>
+
+        <a
+            href="https://www.paypal.com/ncp/payment/BAAYzpBLJ9fbuQUCcu6jVt16M0wI1z_6617fcuSct-ldj2w_GSKADzzj7SDA444honMPWjAG8eTiliRRc"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn"
+            style="
+                display:inline-block;
+                text-decoration:none;
+                background:#ffc439;
+                color:#111;
+            "
+        >
+            Pagar con PayPal
+        </a>
+
+        <p class="small muted">
+            El pago se realiza mediante PayPal.
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    updateProfile
+} from
+"https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    addDoc,
+    setDoc,
+    deleteDoc,
+    query,
+    where,
+    serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+
+/* =====================================================
+   CONFIGURACIÓN FIREBASE
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyBlfv0pZJ4G68rDMaSNG_S2EGOptBVae_E",
+
+    authDomain:
+        "mi-red-a687d.firebaseapp.com",
+
+    projectId:
+        "mi-red-a687d",
+
+    storageBucket:
+        "mi-red-a687d.firebasestorage.app",
+
+    messagingSenderId:
+        "9017246628",
+
+    appId:
+        "1:9017246628:web:175a4126dfa4d3e5627731",
+
+    measurementId:
+        "G-1KK0C750BQ"
+
+};
+
+
+/* =====================================================
+   CLOUDINARY
+===================================================== */
+
+const CLOUDINARY_CLOUD_NAME =
+    "Raiz";
+
+const CLOUDINARY_UPLOAD_PRESET =
+    "Red social";
+
+
+/*
+   Si Cloudinary muestra que el Cloud Name no es válido,
+   solamente hay que colocar aquí el Cloud Name exacto
+   que aparece en tu panel de Cloudinary.
+*/
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let firebaseApp = null;
+let auth = null;
+let db = null;
+
+let currentUser = null;
+
+let currentProfile = null;
+
+let currentBusiness = null;
+
+let clients = [];
+
+let services = [];
+
+let sales = [];
+
+let appointments = [];
+
+let attendance = [];
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function $(id){
+
+    return document.getElementById(id);
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function money(value){
+
+    return "$" +
+        Number(value || 0).toFixed(2);
+
+}
+
+
+function showMessage(
+    elementId,
+    message,
+    success=false
+){
+
+    const element = $(elementId);
+
+    if(!element){
+        return;
+    }
+
+    element.innerHTML =
+        `<div class="message ${
+            success ? "success" : "error"
+        }">${
+            escapeHTML(message)
+        }</div>`;
+
+}
+
+
+function clearMessage(elementId){
+
+    const element = $(elementId);
+
+    if(element){
+        element.innerHTML = "";
+    }
+
+}
+
+
+function firebaseError(error){
+
+    const code =
+        error?.code || "";
+
+    if(
+        code.includes(
+            "operation-not-allowed"
+        )
+    ){
+
+        return (
+            "Firebase no tiene activado "
+            + "el inicio de sesión con "
+            + "correo y contraseña."
+        );
+
+    }
+
+
+    if(
+        code.includes(
+            "invalid-credential"
+        ) ||
+        code.includes(
+            "invalid-login-credentials"
+        )
+    ){
+
+        return (
+            "Correo o contraseña incorrectos."
+        );
+
+    }
+
+
+    if(
+        code.includes(
+            "email-already-in-use"
+        )
+    ){
+
+        return (
+            "Ese correo ya está registrado."
+        );
+
+    }
+
+
+    if(
+        code.includes(
+            "weak-password"
+        )
+    ){
+
+        return (
+            "La contraseña debe tener "
+            + "al menos 6 caracteres."
+        );
+
+    }
+
+
+    if(
+        code.includes(
+            "permission-denied"
+        )
+    ){
+
+        return (
+            "Firebase rechazó la operación "
+            + "por las reglas de Firestore."
+        );
+
+    }
+
+
+    if(
+        code.includes(
+            "network-request-failed"
+        )
+    ){
+
+        return (
+            "No hay conexión a Internet "
+            + "o Firebase no respondió."
+        );
+
+    }
+
+
+    return (
+        error?.message ||
+        "Ocurrió un error desconocido."
+    );
+
+}
+
+
+/* =====================================================
+   INICIALIZAR FIREBASE
+===================================================== */
+
+try{
+
+    firebaseApp =
+        initializeApp(
+            firebaseConfig
+        );
+
+    auth =
+        getAuth(
+            firebaseApp
+        );
+
+    db =
+        getFirestore(
+            firebaseApp
+        );
+
+}catch(error){
+
+    showMessage(
+        "authMessage",
+        "No se pudo iniciar Firebase: "
+        + firebaseError(error)
+    );
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+$("loginButton").onclick =
+async function(){
+
+    clearMessage(
+        "authMessage"
+    );
+
+    const email =
+        $("authEmail")
+        .value
+        .trim();
+
+    const password =
+        $("authPassword")
+        .value;
+
+
+    if(!email){
+
+        showMessage(
+            "authMessage",
+            "Escribe tu correo."
+        );
+
+        return;
+    }
+
+
+    if(!password){
+
+        showMessage(
+            "authMessage",
+            "Escribe tu contraseña."
+        );
+
+        return;
+    }
+
+
+    try{
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+    }catch(error){
+
+        showMessage(
+            "authMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   REGISTRO
+===================================================== */
+
+$("registerButton").onclick =
+async function(){
+
+    clearMessage(
+        "authMessage"
+    );
+
+    const email =
+        $("authEmail")
+        .value
+        .trim();
+
+    const password =
+        $("authPassword")
+        .value;
+
+
+    if(!email){
+
+        showMessage(
+            "authMessage",
+            "Escribe tu correo."
+        );
+
+        return;
+    }
+
+
+    if(password.length < 6){
+
+        showMessage(
+            "authMessage",
+            "La contraseña debe tener "
+            + "al menos 6 caracteres."
+        );
+
+        return;
+    }
+
+
+    try{
+
+        const result =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const defaultName =
+            email
+                .split("@")[0]
+                .slice(0,30);
+
+
+        await setDoc(
+            doc(
+                db,
+                "users",
+                result.user.uid
+            ),
+            {
+
+                uid:
+                    result.user.uid,
+
+                email:
+                    email,
+
+                name:
+                    defaultName,
+
+                premium:
+                    false,
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        await updateProfile(
+            result.user,
+            {
+                displayName:
+                    defaultName
+            }
+        );
+
+
+    }catch(error){
+
+        showMessage(
+            "authMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+$("logoutButton").onclick =
+async function(){
+
+    try{
+
+        await signOut(auth);
+
+    }catch(error){
+
+        showMessage(
+            "globalMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
+
+document
+.querySelectorAll(
+    "#navigation button"
+)
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        async function(){
+
+            const page =
+                this.dataset.page;
+
+
+            document
+            .querySelectorAll(
+                ".page"
+            )
+            .forEach(
+                section =>
+                    section.classList
+                    .remove("active")
+            );
+
+
+            const target =
+                $(page);
+
+
+            if(target){
+
+                target.classList
+                    .add("active");
+
+            }
+
+
+            document
+            .querySelectorAll(
+                "#navigation button"
+            )
+            .forEach(
+                b =>
+                    b.classList
+                    .remove("active")
+            );
+
+
+            this.classList
+                .add("active");
+
+
+            if(
+                page ===
+                "discoverPage"
+            ){
+
+                await loadDiscover();
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =====================================================
+   ESTADO DE AUTENTICACIÓN
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async function(user){
+
+        currentUser =
+            user;
+
+
+        if(!user){
+
+            $("authScreen")
+                .classList
+                .remove("hidden");
+
+            $("application")
+                .classList
+                .add("hidden");
+
+            return;
+
+        }
+
+
+        $("authScreen")
+            .classList
+            .add("hidden");
+
+
+        $("application")
+            .classList
+            .remove("hidden");
+
+
+        try{
+
+            await loadProfile();
+
+            await loadBusiness();
+
+            await loadClients();
+
+            await loadServices();
+
+            await loadSales();
+
+            await loadAppointments();
+
+            await loadAttendance();
+
+            updateInterface();
+
+        }catch(error){
+
+            showMessage(
+                "globalMessage",
+                firebaseError(error)
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PERFIL
+===================================================== */
+
+async function loadProfile(){
+
+    const reference =
+        doc(
+            db,
+            "users",
+            currentUser.uid
+        );
+
+
+    const snapshot =
+        await getDoc(
+            reference
+        );
+
+
+    if(
+        snapshot.exists()
+    ){
+
+        currentProfile =
+            snapshot.data();
+
+    }else{
+
+        currentProfile = {
+
+            uid:
+                currentUser.uid,
+
+            email:
+                currentUser.email,
+
+            name:
+                currentUser.email
+                    .split("@")[0],
+
+            premium:
+                false
+
+        };
+
+
+        await setDoc(
+            reference,
+            currentProfile,
+            {
+                merge:true
+            }
+        );
+
+    }
+
+
+    const name =
+        currentProfile.name ||
+        currentUser.displayName ||
+        currentUser.email
+            .split("@")[0];
+
+
+    $("profileName")
+        .value =
+        name;
+
+
+    $("welcomeName")
+        .textContent =
+        name;
+
+
+    $("userNameLabel")
+        .textContent =
+        name;
+
+
+    if(
+        currentProfile.photoURL
+    ){
+
+        $("profilePhoto")
+            .src =
+            currentProfile.photoURL;
+
+    }else{
+
+        $("profilePhoto")
+            .src =
+            "data:image/svg+xml;charset=UTF-8,"
+            + encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="200"
+                     height="200">
+                    <rect width="100%"
+                          height="100%"
+                          fill="#ddd"/>
+                    <text x="50%"
+                          y="55%"
+                          text-anchor="middle"
+                          font-size="70"
+                          fill="#777">
+                        ?
+                    </text>
+                </svg>
+            `);
+
+    }
+
+
+    $("accountStatus")
+        .innerHTML =
+        currentProfile.premium
+        ?
+        '<span class="pill">PREMIUM</span>'
+        :
+        '<span class="pill">PLAN GRATUITO</span>';
+
+}
+
+
+/* =====================================================
+   GUARDAR PERFIL
+===================================================== */
+
+$("saveProfileButton")
+.onclick =
+async function(){
+
+    try{
+
+        const name =
+            $("profileName")
+            .value
+            .trim();
+
+
+        if(!name){
+
+            showMessage(
+                "profileMessage",
+                "Escribe un nombre."
+            );
+
+            return;
+
+        }
+
+
+        await setDoc(
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            ),
+            {
+                name:name
+            },
+            {
+                merge:true
+            }
+        );
+
+
+        await updateProfile(
+            currentUser,
+            {
+                displayName:name
+            }
+        );
+
+
+        await loadProfile();
+
+
+        showMessage(
+            "profileMessage",
+            "Perfil actualizado.",
+            true
+        );
+
+
+    }catch(error){
+
+        showMessage(
+            "profileMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   CLOUDINARY
+===================================================== */
+
+async function uploadToCloudinary(
+    file
+){
+
+    if(!file){
+
+        throw new Error(
+            "Selecciona un archivo."
+        );
+
+    }
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "file",
+        file
+    );
+
+
+    formData.append(
+        "upload_preset",
+        CLOUDINARY_UPLOAD_PRESET
+    );
+
+
+    const response =
+        await fetch(
+            "https://api.cloudinary.com/v1_1/"
+            +
+            encodeURIComponent(
+                CLOUDINARY_CLOUD_NAME
+            )
+            +
+            "/auto/upload",
+            {
+                method:"POST",
+                body:formData
+            }
+        );
+
+
+    let data = null;
+
+
+    try{
+
+        data =
+            await response.json();
+
+    }catch(error){
+
+        data = null;
+
+    }
+
+
+    if(!response.ok){
+
+        throw new Error(
+            data?.error?.message ||
+            "Cloudinary rechazó el archivo."
+        );
+
+    }
+
+
+    if(
+        !data?.secure_url
+    ){
+
+        throw new Error(
+            "Cloudinary no devolvió "
+            + "una URL válida."
+        );
+
+    }
+
+
+    return data;
+
+}
+
+
+/* =====================================================
+   CAMBIAR FOTO
+===================================================== */
+
+$("changePhotoButton")
+.onclick =
+async function(){
+
+    try{
+
+        const file =
+            $("profilePhotoFile")
+            .files[0];
+
+
+        if(!file){
+
+            showMessage(
+                "profileMessage",
+                "Selecciona una foto."
+            );
+
+            return;
+
+        }
+
+
+        showMessage(
+            "profileMessage",
+            "Subiendo foto...",
+            true
+        );
+
+
+        const uploaded =
+            await uploadToCloudinary(
+                file
+            );
+
+
+        await setDoc(
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            ),
+            {
+                photoURL:
+                    uploaded.secure_url
+            },
+            {
+                merge:true
+            }
+        );
+
+
+        $("profilePhoto")
+            .src =
+            uploaded.secure_url;
+
+
+        $("profilePhotoFile")
+            .value =
+            "";
+
+
+        showMessage(
+            "profileMessage",
+            "Foto actualizada correctamente.",
+            true
+        );
+
+
+    }catch(error){
+
+        showMessage(
+            "profileMessage",
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   NEGOCIO
+===================================================== */
+
+async function loadBusiness(){
+
+    const reference =
+        doc(
+            db,
+            "businesses",
+            currentUser.uid
+        );
+
+
+    const snapshot =
+        await getDoc(
+            reference
+        );
+
+
+    if(!snapshot.exists()){
+
+        currentBusiness =
+            null;
+
+        return;
+
+    }
+
+
+    currentBusiness =
+        {
+            id:
+                snapshot.id,
+
+            ...snapshot.data()
+        };
+
+
+    $("businessName")
+        .value =
+        currentBusiness.name ||
+        "";
+
+
+    $("businessType")
+        .value =
+        currentBusiness.type ||
+        "Negocio";
+
+
+    $("businessDescription")
+        .value =
+        currentBusiness.description ||
+        "";
+
+
+    $("businessAddress")
+        .value =
+        currentBusiness.address ||
+        "";
+
+
+    if(
+        currentBusiness.lat != null &&
+        currentBusiness.lng != null
+    ){
+
+        $("businessCoordinates")
+            .textContent =
+            "Ubicación guardada: "
+            +
+            currentBusiness.lat
+            +
+            ", "
+            +
+            currentBusiness.lng;
+
+    }
+
+}
+
+
+/* =====================================================
+   UBICACIÓN
+===================================================== */
+
+$("getLocationButton")
+.onclick =
+function(){
+
+    clearMessage(
+        "businessMessage"
+    );
+
+
+    if(
+        !navigator.geolocation
+    ){
+
+        showMessage(
+            "businessMessage",
+            "Este navegador no permite obtener la ubicación."
+        );
+
+        return;
+
+    }
+
+
+    navigator.geolocation
+    .getCurrentPosition(
+
+        function(position){
+
+            const lat =
+                position.coords.latitude;
+
+            const lng =
+                position.coords.longitude;
+
+
+            if(!currentBusiness){
+
+                currentBusiness = {};
+
+            }
+
+
+            currentBusiness.lat =
+                lat;
+
+            currentBusiness.lng =
+                lng;
+
+
+            $("businessCoordinates")
+                .textContent =
+                "Ubicación obtenida: "
+                +
+                lat
+                +
+                ", "
+                +
+                lng;
+
+
+            showMessage(
+                "businessMessage",
+                "Ubicación obtenida. Ahora pulsa Guardar negocio.",
+                true
+            );
+
+        },
+
+        function(error){
+
+            let message =
+                "No se pudo obtener la ubicación.";
+
+
+            if(
+                error.code === 1
+            ){
+
+                message =
+                    "Debes permitir el acceso a la ubicación.";
+
+            }
+
+            else if(
+                error.code === 2
+            ){
+
+                message =
+                    "No fue posible determinar tu ubicación.";
+
+            }
+
+            else if(
+                error.code === 3
+            ){
+
+                message =
+                    "La ubicación tardó demasiado en responder.";
+
+            }
+
+
+            showMessage(
+                "businessMessage",
+                message
+            );
+
+        },
+
+        {
+            enableHighAccuracy:true,
+            timeout:15000,
+            maximumAge:60000
+        }
+
+    );
+
+};
+
+
+/* =====================================================
+   GUARDAR NEGOCIO
+===================================================== */
+
+$("saveBusinessButton")
+.onclick =
+async function(){
+
+    try{
+
+        const name =
+            $("businessName")
+            .value
+            .trim();
+
+
+        if(!name){
+
+            showMessage(
+                "businessMessage",
+                "Escribe el nombre del negocio."
+            );
+
+            return;
+
+        }
+
+
+        const data = {
+
+            ownerId:
+                currentUser.uid,
+
+            name:name,
+
+            type:
+                $("businessType")
+                .value,
+
+            description:
+                $("businessDescription")
+                .value
+                .trim(),
+
+            address:
+                $("businessAddress")
+                .value
+                .trim(),
+
+            updatedAt:
+                serverTimestamp()
+
+        };
+
+
+        if(
+            currentBusiness &&
+            currentBusiness.lat != null &&
+            currentBusiness.lng != null
+        ){
+
+            data.lat =
+                currentBusiness.lat;
+
+            data.lng =
+                currentBusiness.lng;
+
+        }
+
+
+        await setDoc(
+            doc(
+                db,
+                "businesses",
+                currentUser.uid
+            ),
+            data,
+            {
+                merge:true
+            }
+        );
+
+
+        await loadBusiness();
+
+        updateHomeBusiness();
+
+
+        showMessage(
+            "businessMessage",
+            "Negocio guardado correctamente.",
+            true
+        );
+
+
+    }catch(error){
+
+        showMessage(
+            "businessMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   CLIENTES
+===================================================== */
+
+async function loadClients(){
+
+    const q =
+        query(
+            collection(
+                db,
+                "clients"
+            ),
+            where(
+                "ownerId",
+                "==",
+                currentUser.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(q);
+
+
+    clients =
+        snapshot.docs.map(
+            item => ({
+                id:item.id,
+                ...item.data()
+            })
+        );
+
+
+    renderClients();
+
+    updateSelectors();
+
+    updateStats();
+
+}
+
+
+function renderClients(){
+
+    if(!clients.length){
+
+        $("clientsList")
+            .innerHTML =
+            '<div class="card empty">'
+            + 'No hay clientes todavía.'
+            + '</div>';
+
+        return;
+
+    }
+
+
+    $("clientsList")
+        .innerHTML =
+        clients.map(
+            client => `
+
+            <div class="item">
+
+                <strong>
+                    ${escapeHTML(client.name)}
+                </strong>
+
+                <br>
+
+                ${escapeHTML(client.phone || "")}
+
+                <br>
+
+                ${escapeHTML(client.email || "")}
+
+                <div class="item-actions">
+
+                    <button
+                        class="btn red"
+                        data-delete-client="${client.id}"
+                    >
+                        Eliminar
+                    </button>
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    document
+    .querySelectorAll(
+        "[data-delete-client]"
+    )
+    .forEach(
+        button => {
+
+            button.onclick =
+            async function(){
+
+                try{
+
+                    await deleteDoc(
+                        doc(
+                            db,
+                            "clients",
+                            this.dataset
+                                .deleteClient
+                        )
+                    );
+
+
+                    await loadClients();
+
+                }catch(error){
+
+                    showMessage(
+                        "globalMessage",
+                        firebaseError(error)
+                    );
+
+                }
+
+            };
+
+        }
+    );
+
+}
+
+
+$("addClientButton")
+.onclick =
+async function(){
+
+    try{
+
+        const name =
+            $("clientName")
+            .value
+            .trim();
+
+
+        if(!name){
+
+            showMessage(
+                "globalMessage",
+                "Escribe el nombre del cliente."
+            );
+
+            return;
+
+        }
+
+
+        await addDoc(
+            collection(
+                db,
+                "clients"
+            ),
+            {
+
+                ownerId:
+                    currentUser.uid,
+
+                name:name,
+
+                phone:
+                    $("clientPhone")
+                    .value
+                    .trim(),
+
+                email:
+                    $("clientEmail")
+                    .value
+                    .trim(),
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        $("clientName").value = "";
+
+        $("clientPhone").value = "";
+
+        $("clientEmail").value = "";
+
+
+        await loadClients();
+
+
+    }catch(error){
+
+        showMessage(
+            "globalMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   SERVICIOS
+===================================================== */
+
+async function loadServices(){
+
+    const q =
+        query(
+            collection(
+                db,
+                "services"
+            ),
+            where(
+                "ownerId",
+                "==",
+                currentUser.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(q);
+
+
+    services =
+        snapshot.docs.map(
+            item => ({
+                id:item.id,
+                ...item.data()
+            })
+        );
+
+
+    renderServices();
+
+    updateSelectors();
+
+    updateStats();
+
+}
+
+
+function renderServices(){
+
+    if(!services.length){
+
+        $("servicesList")
+            .innerHTML =
+            '<div class="card empty">'
+            + 'No hay servicios o productos.'
+            + '</div>';
+
+        return;
+
+    }
+
+
+    $("servicesList")
+        .innerHTML =
+        services.map(
+            service => `
+
+            <div class="item">
+
+                <strong>
+                    ${escapeHTML(service.name)}
+                </strong>
+
+                <br>
+
+                ${money(service.price)}
+
+                <br>
+
+                <span class="pill">
+                    ${escapeHTML(service.type || "Servicio")}
+                </span>
+
+                <div class="item-actions">
+
+                    <button
+                        class="btn red"
+                        data-delete-service="${service.id}"
+                    >
+                        Eliminar
+                    </button>
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    document
+    .querySelectorAll(
+        "[data-delete-service]"
+    )
+    .forEach(
+        button => {
+
+            button.onclick =
+            async function(){
+
+                try{
+
+                    await deleteDoc(
+                        doc(
+                            db,
+                            "services",
+                            this.dataset
+                                .deleteService
+                        )
+                    );
+
+
+                    await loadServices();
+
+                }catch(error){
+
+                    showMessage(
+                        "globalMessage",
+                        firebaseError(error)
+                    );
+
+                }
+
+            };
+
+        }
+    );
+
+}
+
+
+$("addServiceButton")
+.onclick =
+async function(){
+
+    try{
+
+        const name =
+            $("serviceName")
+            .value
+            .trim();
+
+
+        const price =
+            Number(
+                $("servicePrice")
+                .value
+            );
+
+
+        if(!name){
+
+            showMessage(
+                "globalMessage",
+                "Escribe el nombre."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !Number.isFinite(price) ||
+            price < 0
+        ){
+
+            showMessage(
+                "globalMessage",
+                "Introduce un precio válido."
+            );
+
+            return;
+
+        }
+
+
+        await addDoc(
+            collection(
+                db,
+                "services"
+            ),
+            {
+
+                ownerId:
+                    currentUser.uid,
+
+                name:name,
+
+                price:price,
+
+                type:
+                    $("serviceType")
+                    .value,
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        $("serviceName").value = "";
+
+        $("servicePrice").value = "";
+
+
+        await loadServices();
+
+
+    }catch(error){
+
+        showMessage(
+            "globalMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   VENTAS
+===================================================== */
+
+async function loadSales(){
+
+    const q =
+        query(
+            collection(
+                db,
+                "sales"
+            ),
+            where(
+                "ownerId",
+                "==",
+                currentUser.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(q);
+
+
+    sales =
+        snapshot.docs.map(
+            item => ({
+                id:item.id,
+                ...item.data()
+            })
+        );
+
+
+    renderSales();
+
+    updateStats();
+
+}
+
+
+function renderSales(){
+
+    if(!sales.length){
+
+        $("salesList")
+            .innerHTML =
+            '<div class="card empty">'
+            + 'No hay ventas todavía.'
+            + '</div>';
+
+        return;
+
+    }
+
+
+    const ordered =
+        [...sales].reverse();
+
+
+    $("salesList")
+        .innerHTML =
+        ordered.map(
+            sale => `
+
+            <div class="item">
+
+                <strong>
+                    ${escapeHTML(
+                        sale.name || "Venta"
+                    )}
+                </strong>
+
+                <br>
+
+                <strong>
+                    ${money(sale.amount)}
+                </strong>
+
+                <br>
+
+                ${escapeHTML(
+                    sale.payment || ""
+                )}
+
+                <div class="item-actions">
+
+                    <button
+                        class="btn red"
+                        data-delete-sale="${sale.id}"
+                    >
+                        Eliminar
+                    </button>
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    document
+    .querySelectorAll(
+        "[data-delete-sale]"
+    )
+    .forEach(
+        button => {
+
+            button.onclick =
+            async function(){
+
+                try{
+
+                    await deleteDoc(
+                        doc(
+                            db,
+                            "sales",
+                            this.dataset
+                                .deleteSale
+                        )
+                    );
+
+
+                    await loadSales();
+
+                }catch(error){
+
+                    showMessage(
+                        "globalMessage",
+                        firebaseError(error)
+                    );
+
+                }
+
+            };
+
+        }
+    );
+
+}
+
+
+$("addSaleButton")
+.onclick =
+async function(){
+
+    try{
+
+        const service =
+            services.find(
+                item =>
+                    item.id ===
+                    $("saleService")
+                    .value
+            );
+
+
+        const amount =
+            Number(
+                $("saleAmount")
+                .value
+            );
+
+
+        if(
+            !Number.isFinite(amount) ||
+            amount <= 0
+        ){
+
+            showMessage(
+                "globalMessage",
+                "Introduce un monto válido."
+            );
+
+            return;
+
+        }
+
+
+        await addDoc(
+            collection(
+                db,
+                "sales"
+            ),
+            {
+
+                ownerId:
+                    currentUser.uid,
+
+                serviceId:
+                    service?.id || null,
+
+                name:
+                    service?.name ||
+                    "Venta",
+
+                amount:amount,
+
+                payment:
+                    $("salePayment")
+                    .value,
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        $("saleAmount").value = "";
+
+
+        await loadSales();
+
+
+    }catch(error){
+
+        showMessage(
+            "globalMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   AGENDA
+===================================================== */
+
+async function loadAppointments(){
+
+    const q =
+        query(
+            collection(
+                db,
+                "appointments"
+            ),
+            where(
+                "ownerId",
+                "==",
+                currentUser.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(q);
+
+
+    appointments =
+        snapshot.docs.map(
+            item => ({
+                id:item.id,
+                ...item.data()
+            })
+        );
+
+
+    renderAppointments();
+
+}
+
+
+function renderAppointments(){
+
+    if(!appointments.length){
+
+        $("appointmentsList")
+            .innerHTML =
+            '<div class="card empty">'
+            + 'No hay citas.'
+            + '</div>';
+
+        return;
+
+    }
+
+
+    const ordered =
+        [...appointments].sort(
+            (a,b) =>
+                String(a.date || "")
+                .localeCompare(
+                    String(b.date || "")
+                )
+        );
+
+
+    $("appointmentsList")
+        .innerHTML =
+        ordered.map(
+            appointment => `
+
+            <div class="item">
+
+                <strong>
+                    ${escapeHTML(
+                        appointment.clientName
+                    )}
+                </strong>
+
+                <br>
+
+                ${escapeHTML(
+                    appointment.service || ""
+                )}
+
+                <br>
+
+                ${escapeHTML(
+                    appointment.date || ""
+                )}
+
+                <div class="item-actions">
+
+                    <button
+                        class="btn red"
+                        data-delete-appointment="${appointment.id}"
+                    >
+                        Eliminar
+                    </button>
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    document
+    .querySelectorAll(
+        "[data-delete-appointment]"
+    )
+    .forEach(
+        button => {
+
+            button.onclick =
+            async function(){
+
+                try{
+
+                    await deleteDoc(
+                        doc(
+                            db,
+                            "appointments",
+                            this.dataset
+                                .deleteAppointment
+                        )
+                    );
+
+
+                    await loadAppointments();
+
+                }catch(error){
+
+                    showMessage(
+                        "globalMessage",
+                        firebaseError(error)
+                    );
+
+                }
+
+            };
+
+        }
+    );
+
+}
+
+
+$("addAppointmentButton")
+.onclick =
+async function(){
+
+    try{
+
+        const client =
+            clients.find(
+                item =>
+                    item.id ===
+                    $("appointmentClient")
+                    .value
+            );
+
+
+        if(!client){
+
+            showMessage(
+                "globalMessage",
+                "Selecciona un cliente."
+            );
+
+            return;
+
+        }
+
+
+        const date =
+            $("appointmentDate")
+            .value;
+
+
+        if(!date){
+
+            showMessage(
+                "globalMessage",
+                "Selecciona una fecha."
+            );
+
+            return;
+
+        }
+
+
+        await addDoc(
+            collection(
+                db,
+                "appointments"
+            ),
+            {
+
+                ownerId:
+                    currentUser.uid,
+
+                clientId:
+                    client.id,
+
+                clientName:
+                    client.name,
+
+                date:date,
+
+                service:
+                    $("appointmentService")
+                    .value
+                    .trim(),
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        $("appointmentDate").value = "";
+
+        $("appointmentService").value = "";
+
+
+        await loadAppointments();
+
+
+    }catch(error){
+
+        showMessage(
+            "globalMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   ASISTENCIA
+===================================================== */
+
+async function loadAttendance(){
+
+    const q =
+        query(
+            collection(
+                db,
+                "attendance"
+            ),
+            where(
+                "ownerId",
+                "==",
+                currentUser.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(q);
+
+
+    attendance =
+        snapshot.docs.map(
+            item => ({
+                id:item.id,
+                ...item.data()
+            })
+        );
+
+
+    renderAttendance();
+
+}
+
+
+function renderAttendance(){
+
+    if(!attendance.length){
+
+        $("attendanceList")
+            .innerHTML =
+            '<div class="card empty">'
+            + 'No hay registros de asistencia.'
+            + '</div>';
+
+        return;
+
+    }
+
+
+    $("attendanceList")
+        .innerHTML =
+        [...attendance]
+        .reverse()
+        .slice(0,100)
+        .map(
+            record => {
+
+                const date =
+                    record.date
+                    ?
+                    new Date(
+                        record.date
+                    ).toLocaleString(
+                        "es-ES"
+                    )
+                    :
+                    "";
+
+                return `
+
+                <div class="item">
+
+                    <strong>
+                        ${escapeHTML(
+                            record.clientName
+                        )}
+                    </strong>
+
+                    <br>
+
+                    ${escapeHTML(date)}
+
+                </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+$("addAttendanceButton")
+.onclick =
+async function(){
+
+    try{
+
+        const client =
+            clients.find(
+                item =>
+                    item.id ===
+                    $("attendanceClient")
+                    .value
+            );
+
+
+        if(!client){
+
+            showMessage(
+                "globalMessage",
+                "Selecciona un cliente."
+            );
+
+            return;
+
+        }
+
+
+        await addDoc(
+            collection(
+                db,
+                "attendance"
+            ),
+            {
+
+                ownerId:
+                    currentUser.uid,
+
+                clientId:
+                    client.id,
+
+                clientName:
+                    client.name,
+
+                date:
+                    new Date()
+                    .toISOString(),
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        await loadAttendance();
+
+
+    }catch(error){
+
+        showMessage(
+            "globalMessage",
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   SELECTS
+===================================================== */
+
+function updateSelectors(){
+
+    $("saleService")
+        .innerHTML =
+        services.length
+        ?
+        services.map(
+            service =>
+                `<option value="${
+                    escapeHTML(service.id)
+                }">
+                    ${
+                        escapeHTML(service.name)
+                    }
+                    -
+                    ${
+                        money(service.price)
+                    }
+                </option>`
+        ).join("")
+        :
+        '<option value="">No hay servicios</option>';
+
+
+    const clientOptions =
+        clients.length
+        ?
+        clients.map(
+            client =>
+                `<option value="${
+                    escapeHTML(client.id)
+                }">
+                    ${
+                        escapeHTML(client.name)
+                    }
+                </option>`
+        ).join("")
+        :
+        '<option value="">No hay clientes</option>';
+
+
+    $("appointmentClient")
+        .innerHTML =
+        clientOptions;
+
+
+    $("attendanceClient")
+        .innerHTML =
+        clientOptions;
+
+}
+
+
+/* =====================================================
+   ESTADÍSTICAS
+===================================================== */
+
+function updateStats(){
+
+    $("statClients")
+        .textContent =
+        clients.length;
+
+
+    $("statServices")
+        .textContent =
+        services.length;
+
+
+    $("statSales")
+        .textContent =
+        sales.length;
+
+
+    const total =
+        sales.reduce(
+            (sum,sale) =>
+                sum +
+                Number(
+                    sale.amount || 0
+                ),
+            0
+        );
+
+
+    $("statIncome")
+        .textContent =
+        money(total);
+
+}
+
+
+/* =====================================================
+   INICIO / NEGOCIO
+===================================================== */
+
+function updateHomeBusiness(){
+
+    if(
+        !currentBusiness ||
+        !currentBusiness.name
+    ){
+
+        $("homeBusiness")
+            .innerHTML =
+            '<div class="empty">'
+            + 'Todavía no configuraste tu negocio.'
+            + '</div>';
+
+        return;
+
+    }
+
+
+    let maps = "";
+
+
+    if(
+        currentBusiness.lat != null &&
+        currentBusiness.lng != null
+    ){
+
+        const url =
+            "https://www.google.com/maps?q="
+            +
+            encodeURIComponent(
+                currentBusiness.lat
+                +
+                ","
+                +
+                currentBusiness.lng
+            );
+
+
+        maps =
+            `<a
+                class="map-link"
+                href="${url}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                📍 Ver ubicación en Google Maps
+            </a>`;
+
+    }
+
+
+    $("homeBusiness")
+        .innerHTML = `
+
+        <div class="item">
+
+            <h3>
+                ${escapeHTML(
+                    currentBusiness.name
+                )}
+            </h3>
+
+            <span class="pill">
+                ${escapeHTML(
+                    currentBusiness.type ||
+                    "Negocio"
+                )}
+            </span>
+
+            <p>
+                ${escapeHTML(
+                    currentBusiness.description ||
+                    ""
+                )}
+            </p>
+
+            <p>
+                ${escapeHTML(
+                    currentBusiness.address ||
+                    "Sin dirección"
+                )}
+            </p>
+
+            ${maps}
+
+        </div>
+
+        `;
+
+}
+
+
+/* =====================================================
+   PUBLICAR
+===================================================== */
+
+$("publishButton")
+.onclick =
+async function(){
+
+    try{
+
+        const text =
+            $("publicationText")
+            .value
+            .trim();
+
+
+        const file =
+            $("publicationFile")
+            .files[0];
+
+
+        if(
+            !text &&
+            !file
+        ){
+
+            showMessage(
+                "publicationMessage",
+                "Escribe algo o selecciona una foto/video."
+            );
+
+            return;
+
+        }
+
+
+        showMessage(
+            "publicationMessage",
+            "Preparando publicación...",
+            true
+        );
+
+
+        let mediaURL = "";
+
+        let mediaType = "";
+
+
+        if(file){
+
+            showMessage(
+                "publicationMessage",
+                "Subiendo archivo...",
+                true
+            );
+
+
+            const uploaded =
+                await uploadToCloudinary(
+                    file
+                );
+
+
+            mediaURL =
+                uploaded.secure_url;
+
+
+            mediaType =
+                file.type.startsWith(
+                    "video/"
+                )
+                ?
+                "video"
+                :
+                "image";
+
+        }
+
+
+        await addDoc(
+            collection(
+                db,
+                "publications"
+            ),
+            {
+
+                ownerId:
+                    currentUser.uid,
+
+                ownerName:
+                    currentProfile?.name ||
+                    currentUser.email,
+
+                businessName:
+                    currentBusiness?.name ||
+                    "Negocio",
+
+                businessType:
+                    currentBusiness?.type ||
+                    "Negocio",
+
+                type:
+                    $("publicationType")
+                    .value,
+
+                text:text,
+
+                mediaURL:
+                    mediaURL,
+
+                mediaType:
+                    mediaType,
+
+                lat:
+                    currentBusiness?.lat ??
+                    null,
+
+                lng:
+                    currentBusiness?.lng ??
+                    null,
+
+                address:
+                    currentBusiness?.address ||
+                    "",
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        $("publicationText")
+            .value = "";
+
+
+        $("publicationFile")
+            .value = "";
+
+
+        showMessage(
+            "publicationMessage",
+            "Publicación creada correctamente.",
+            true
+        );
+
+
+        await loadDiscover();
+
+
+    }catch(error){
+
+        showMessage(
+            "publicationMessage",
+            error.message ||
+            firebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   DESCUBRIR
+===================================================== */
+
+async function loadDiscover(){
+
+    const container =
+        $("discoverList");
+
+
+    container.innerHTML =
+        '<div class="loading">'
+        + 'Cargando negocios...'
+        + '</div>';
+
+
+    try{
+
+        const publicationsSnapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "publications"
+                )
+            );
+
+
+        const businessesSnapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "businesses"
+                )
+            );
+
+
+        const publications =
+            publicationsSnapshot.docs
+            .map(
+                item => ({
+                    id:item.id,
+                    ...item.data()
+                })
+            );
+
+
+        const businesses =
+            businessesSnapshot.docs
+            .map(
+                item => ({
+                    id:item.id,
+                    ...item.data()
+                })
+            );
+
+
+        const search =
+            $("discoverSearch")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+        let combined = [];
+
+
+        businesses.forEach(
+            business => {
+
+                combined.push({
+
+                    kind:"business",
+
+                    id:
+                        business.id,
+
+                    name:
+                        business.name ||
+                        "Negocio",
+
+                    type:
+                        business.type ||
+                        "Negocio",
+
+                    description:
+                        business.description ||
+                        "",
+
+                    address:
+                        business.address ||
+                        "",
+
+                    lat:
+                        business.lat,
+
+                    lng:
+                        business.lng
+
+                });
+
+            }
+        );
+
+
+        publications.forEach(
+            publication => {
+
+                combined.push({
+
+                    kind:"publication",
+
+                    ...publication
+
+                });
+
+            }
+        );
+
+
+        if(search){
+
+            combined =
+                combined.filter(
+                    item => {
+
+                        const text =
+                            [
+
+                                item.name,
+
+                                item.businessName,
+
+                                item.type,
+
+                                item.businessType,
+
+                                item.description,
+
+                                item.text,
+
+                                item.address
+
+                            ]
+                            .filter(Boolean)
+                            .join(" ")
+                            .toLowerCase();
+
+
+                        return text.includes(
+                            search
+                        );
+
+                    }
+                );
+
+        }
+
+
+        combined =
+            combined.slice(
+                0,
+                100
+            );
+
+
+        if(!combined.length){
+
+            container.innerHTML =
+                '<div class="card empty">'
+                + 'No se encontraron resultados.'
+                + '</div>';
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            combined.map(
+                item =>
+                    renderDiscoverItem(
+                        item
+                    )
+            ).join("");
+
+
+    }catch(error){
+
+        container.innerHTML =
+            `<div class="card">
+                <div class="message error">
+                    ${escapeHTML(
+                        firebaseError(error)
+                    )}
+                </div>
+            </div>`;
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER DESCUBRIR
+===================================================== */
+
+function renderDiscoverItem(
+    item
+){
+
+    if(
+        item.kind ===
+        "business"
+    ){
+
+        let maps = "";
+
+
+        if(
+            item.lat != null &&
+            item.lng != null
+        ){
+
+            const mapsURL =
+                "https://www.google.com/maps?q="
+                +
+                encodeURIComponent(
+                    item.lat
+                    +
+                    ","
+                    +
+                    item.lng
+                );
+
+
+            maps =
+                `<a
+                    class="map-link"
+                    href="${mapsURL}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📍 Cómo llegar
+                </a>`;
+
+        }
+
+
+        return `
+
+        <div class="card">
+
+            <h3>
+                ${escapeHTML(
+                    item.name
+                )}
+            </h3>
+
+            <span class="pill">
+                ${escapeHTML(
+                    item.type
+                )}
+            </span>
+
+            <p>
+                ${escapeHTML(
+                    item.description
+                )}
+            </p>
+
+            <p>
+                ${escapeHTML(
+                    item.address ||
+                    "Sin dirección"
+                )}
+            </p>
+
+            ${maps}
+
+        </div>
+
+        `;
+
+    }
+
+
+    let media = "";
+
+
+    if(
+        item.mediaType ===
+        "video" &&
+        item.mediaURL
+    ){
+
+        media =
+            `<video
+                class="media"
+                controls
+                preload="metadata"
+                src="${escapeHTML(
+                    item.mediaURL
+                )}"
+            ></video>`;
+
+    }
+
+    else if(
+        item.mediaURL
+    ){
+
+        media =
+            `<img
+                class="media"
+                loading="lazy"
+                src="${escapeHTML(
+                    item.mediaURL
+                )}"
+                alt="Publicación"
+            >`;
+
+    }
+
+
+    let maps = "";
+
+
+    if(
+        item.lat != null &&
+        item.lng != null
+    ){
+
+        const mapsURL =
+            "https://www.google.com/maps?q="
+            +
+            encodeURIComponent(
+                item.lat
+                +
+                ","
+                +
+                item.lng
+            );
+
+
+        maps =
+            `<a
+                class="map-link"
+                href="${mapsURL}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                📍 Ver ubicación
+            </a>`;
+
+    }
+
+
+    return `
+
+    <div class="card">
+
+        <h3>
+            ${escapeHTML(
+                item.businessName ||
+                "Negocio"
+            )}
+        </h3>
+
+        <span class="pill">
+            ${escapeHTML(
+                item.type ||
+                item.businessType ||
+                "Negocio"
+            )}
+        </span>
+
+        <p>
+            ${escapeHTML(
+                item.text ||
+                ""
+            )}
+        </p>
+
+        ${media}
+
+        ${maps}
+
+        <p class="small muted">
+
+            Publicado por:
+            ${escapeHTML(
+                item.ownerName ||
+                ""
+            )}
+
+        </p>
+
+    </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   BÚSQUEDA EN TIEMPO REAL
+===================================================== */
+
+$("discoverSearch")
+.addEventListener(
+    "input",
+    function(){
+
+        loadDiscover();
+
+    }
+);
+
+
+$("refreshDiscoverButton")
+.onclick =
+function(){
+
+    loadDiscover();
+
+};
+
+
+/* =====================================================
+   ACTUALIZAR INTERFAZ
+===================================================== */
+
+function updateInterface(){
+
+    updateStats();
+
+    updateSelectors();
+
+    updateHomeBusiness();
+
+    if(currentProfile){
+
+        const name =
+            currentProfile.name ||
+            currentUser.email;
+
+
+        $("welcomeName")
+            .textContent =
+            name;
+
+
+        $("userNameLabel")
+            .textContent =
+            name;
+
+    }
+
+}
+
+
+/* =====================================================
+   CARGA INICIAL
+===================================================== */
+
+$("discoverPage")
+.addEventListener(
+    "click",
+    function(){
+
+        loadDiscover();
+
+    }
+);
+
+
+/*
+   Evita que un error no controlado
+   deje toda la aplicación sin respuesta.
+*/
+
+window.addEventListener(
+    "unhandledrejection",
+    function(event){
+
+        console.error(
+            "Unhandled promise:",
+            event.reason
+        );
+
+        showMessage(
+            "globalMessage",
+            event.reason?.message ||
+            "Ocurrió un error inesperado."
+        );
+
+    }
+);
+
+
+window.addEventListener(
+    "error",
+    function(event){
+
+        console.error(
+            "JavaScript error:",
+            event.error
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
